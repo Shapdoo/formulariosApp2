@@ -1,0 +1,103 @@
+<h2>Template: Basicos</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="guardar()" #miFormulario="ngForm" autocomplete="off">
+      <!-- Campo de producto -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Producto</label>
+
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            name="producto"
+            placeholder="Nombre del producto"
+            [ngModel]="initialStateForm.producto"
+            required
+            minlength="3"
+          />
+
+          <span class="form-text text-danger" *ngIf="nombreInvalido()"
+            >Campo inválido</span
+          >
+        </div>
+      </div>
+      <!-- Campo de precio -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Precio</label>
+
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            name="precio"
+            [ngModel]="initialStateForm.precio"
+            placeholder="Nombre del producto"
+            required
+            min="1"
+            minlength="3"
+          />
+
+          <span class="form-text text-danger" *ngIf="precioInvalido()"
+            >Campo inválido</span
+          >
+        </div>
+      </div>
+
+      <!-- Campo de Stock -->
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stock</label>
+
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            name="stock"
+            [ngModel]="initialStateForm.stock"
+            min="1"
+            placeholder="Nombre del producto"
+            required
+            minlength="3"
+          />
+          <span class="form-text text-danger" *ngIf="stockInvalido()"
+            >Campo inválido</span
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button
+            type="submit"
+            class="btn btn-primary float-end"
+            [disabled]="miFormulario.invalid"
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <!-- Valido -->
+    <span>Valid</span>
+    <pre>{{ miFormulario.valid }}</pre>
+
+    <!-- Como nuevo -->
+    <span>Pristine</span>
+    <pre>{{ miFormulario.pristine }}</pre>
+
+    <!-- touched -->
+    <span>Touched</span>
+    <pre>{{ miFormulario.touched }}</pre>
+
+    <!-- Valor -->
+    <span>value</span>
+    <pre>{{ miFormulario.value | json }}</pre>
+  </div>
+</div>
